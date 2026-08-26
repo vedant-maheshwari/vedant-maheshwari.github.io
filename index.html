@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vedant Maheshwari — Research</title>
+  <meta name="description" content="AI/ML researcher working on LLM spectral analysis, multilingual NLP for Indian languages, and reliable medical AI. Pre-final year at Amrita Vishwa Vidyapeetham.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink:      #080B10;
+      --ink-2:    #0D1117;
+      --panel:    #10141C;
+      --panel-2:  #141924;
+      --line:     #1E2535;
+      --line-2:   #283146;
+      --text:     #E4E8F0;
+      --muted:    #7E8DA4;
+      --dim:      #4A5568;
+      --spectral: #6FCFB5;
+      --amber:    #D9944A;
+      --serif:    'Fraunces', Georgia, serif;
+      --sans:     'IBM Plex Sans', system-ui, sans-serif;
+      --mono:     'IBM Plex Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--ink);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--spectral); color: #04120D; }
+    :focus-visible { outline: 1.5px solid var(--spectral); outline-offset: 4px; }
+
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8, 11, 16, 0.88);
+      backdrop-filter: blur(14px) saturate(1.4);
+      -webkit-backdrop-filter: blur(14px) saturate(1.4);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap {
+      display: flex; align-items: center;
+      justify-content: space-between; height: 56px;
+    }
+    .brand {
+      font-family: var(--mono); font-size: 12.5px;
+      letter-spacing: 0.1em; color: var(--spectral);
+      text-transform: uppercase;
+    }
+    .navlinks {
+      display: flex; gap: 32px;
+      font-family: var(--mono); font-size: 12px;
+      color: var(--muted); text-transform: lowercase;
+    }
+    .navlinks a { transition: color .15s; }
+    .navlinks a:hover { color: var(--text); }
+    .navlinks a.active { color: var(--text); }
+
+    .nav-status {
+      display: flex; align-items: center; gap: 7px;
+      font-family: var(--mono); font-size: 11px;
+      color: var(--muted);
+    }
+    .nav-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--spectral);
+      box-shadow: 0 0 6px var(--spectral);
+      animation: blink 2.8s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    @media (max-width: 720px) {
+      .navlinks { gap: 18px; }
+      .nav-status { display: none; }
+      .navlinks .hide-sm { display: none; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 88px 0 64px;
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: 11.5px;
+      color: var(--amber); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 28px;
+    }
+    .eyebrow::before {
+      content: ''; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--amber);
+      box-shadow: 0 0 8px rgba(217,148,74,.6);
+      animation: blink 2.4s ease-in-out infinite;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+      line-height: 1.06;
+      letter-spacing: -0.015em;
+      max-width: 860px;
+      margin-bottom: 28px;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--spectral);
+      font-weight: 300;
+    }
+    h1 strong { font-weight: 500; }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 64px; align-items: start;
+    }
+    @media (max-width: 920px) { .hero-layout { grid-template-columns: 1fr; gap: 40px; } }
+
+    .hero-sub {
+      color: var(--muted); font-size: 1rem;
+      max-width: 580px; line-height: 1.75;
+      margin-bottom: 32px;
+    }
+
+    .hero-meta {
+      display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 32px;
+    }
+    .meta-row {
+      display: flex; align-items: baseline; gap: 12px;
+      font-family: var(--mono); font-size: 11.5px;
+    }
+    .meta-key { color: var(--dim); min-width: 70px; }
+    .meta-val { color: var(--text); }
+
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.03em; text-decoration: none;
+      padding: 10px 18px; border-radius: 2px;
+      display: inline-flex; align-items: center; gap: 7px;
+      transition: all .18s; white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--spectral); color: #04120D; font-weight: 500;
+    }
+    .btn-primary:hover { background: #89dcc5; transform: translateY(-1px); }
+    .btn-ghost {
+      border: 1px solid var(--line-2); color: var(--muted);
+    }
+    .btn-ghost:hover { border-color: var(--spectral); color: var(--spectral); }
+
+    /* ── SIGNAL CARD ── */
+    .signal-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 18px 18px 12px;
+      position: relative;
+    }
+    .signal-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--spectral), transparent);
+      opacity: .4;
+    }
+    .sig-head {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: 12px;
+    }
+    .sig-label {
+      font-family: var(--mono); font-size: 10.5px;
+      color: var(--dim); text-transform: uppercase; letter-spacing: .08em;
+    }
+    .sig-val {
+      font-family: var(--mono); font-size: 10.5px;
+      color: var(--spectral); transition: opacity .3s;
+    }
+    svg.spectral { width: 100%; height: auto; display: block; }
+    .decay-path {
+      stroke: var(--spectral); stroke-width: 1.5; fill: none;
+      filter: drop-shadow(0 0 4px rgba(111,207,181,.4));
+    }
+    .decay-path-2 {
+      stroke: var(--amber); stroke-width: 1.2;
+      fill: none; opacity: .45;
+    }
+    .axis-line { stroke: var(--line-2); stroke-width: 1; }
+    .grid-line { stroke: var(--line); stroke-width: 0.5; stroke-dasharray: 3 4; }
+    .eig-dot { fill: var(--spectral); }
+    .eig-dot-amber { fill: var(--amber); opacity: .55; }
+    .sig-footer {
+      display: flex; justify-content: space-between;
+      margin-top: 10px;
+    }
+    .sig-caption {
+      font-family: var(--mono); font-size: 10px;
+      color: var(--dim);
+    }
+
+    .stats-strip {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--line); border-top: none;
+      background: var(--line);
+      gap: 1px;
+    }
+    @media (max-width: 640px) {
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+    .stat-box {
+      background: var(--panel-2); padding: 18px 20px;
+    }
+    .stat-n {
+      font-family: var(--serif); font-size: 2rem;
+      font-weight: 400; color: var(--text);
+      letter-spacing: -0.02em;
+      display: block; margin-bottom: 4px;
+    }
+    .stat-l {
+      font-family: var(--mono); font-size: 10.5px;
+      color: var(--muted); text-transform: uppercase; letter-spacing: .07em;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 64px 0;
+      border-top: 1px solid var(--line);
+    }
+    .sec-head {
+      display: grid;
+      grid-template-columns: 36px 1fr auto;
+      align-items: baseline;
+      gap: 14px; margin-bottom: 40px;
+    }
+    .sec-n {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--amber); letter-spacing: .04em;
+    }
+    h2 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: 1.65rem; letter-spacing: -0.01em;
+    }
+    .sec-aside {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--dim); text-align: right;
+    }
+    @media (max-width: 640px) { .sec-aside { display: none; } }
+
+    /* ── RESEARCH PILLARS ── */
+    .pillars {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line);
+    }
+    @media (max-width: 820px) { .pillars { grid-template-columns: 1fr; } }
+    .pillar { background: var(--panel); padding: 28px 24px; }
+    .pillar:hover { background: var(--panel-2); }
+    .pillar-tag {
+      font-family: var(--mono); font-size: 10px;
+      color: var(--spectral); text-transform: uppercase;
+      letter-spacing: .1em; margin-bottom: 12px;
+    }
+    .pillar h3 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: 1.15rem; line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .pillar p { color: var(--muted); font-size: 0.91rem; line-height: 1.7; }
+
+    /* ── PUBLICATIONS ── */
+    .pub-list { border-top: 1px solid var(--line); }
+    .pub {
+      display: grid;
+      grid-template-columns: 74px 1fr 52px;
+      gap: 20px 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+    @media (max-width: 620px) {
+      .pub { grid-template-columns: 54px 1fr; }
+      .pub-year { display: none; }
+    }
+    .pub-status {
+      font-family: var(--mono); font-size: 9.5px;
+      text-transform: uppercase; letter-spacing: .06em;
+      padding-top: 4px; line-height: 1.5;
+    }
+    .st-pub { color: var(--spectral); }
+    .st-in  { color: var(--amber); }
+    .st-rev { color: var(--muted); }
+    .st-pat { color: var(--dim); }
+    .pub-body {}
+    .pub-title {
+      font-size: 0.95rem; line-height: 1.45; margin-bottom: 5px;
+    }
+    .pub-title a { transition: color .15s; }
+    .pub-title a:hover { color: var(--spectral); }
+    .pub-venue {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--dim);
+    }
+    .pub-authors {
+      font-family: var(--mono); font-size: 10.5px;
+      color: var(--dim); margin-top: 3px;
+    }
+    .pub-year {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--dim); text-align: right; white-space: nowrap;
+    }
+
+    /* ── TIMELINE ── */
+    .tl-list { border-top: 1px solid var(--line); }
+    .tl-item {
+      display: grid; grid-template-columns: 160px 1fr;
+      gap: 24px; padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    @media (max-width: 640px) { .tl-item { grid-template-columns: 1fr; gap: 8px; } }
+    .tl-date {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--amber); padding-top: 3px; line-height: 1.5;
+    }
+    .tl-loc {
+      font-family: var(--mono); font-size: 10.5px;
+      color: var(--dim); margin-top: 4px;
+    }
+    .tl-role {
+      font-family: var(--serif); font-weight: 400;
+      font-size: 1.1rem; margin-bottom: 3px;
+    }
+    .tl-org {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--spectral); margin-bottom: 10px;
+    }
+    .tl-desc { color: var(--muted); font-size: 0.92rem; line-height: 1.7; }
+    .tl-metrics {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      margin-top: 10px; padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+    .tl-metric {
+      font-family: var(--mono); font-size: 11px;
+    }
+    .tl-metric b { color: var(--spectral); display: block; font-size: 0.95rem; margin-bottom: 2px; }
+
+    /* ── PROJECTS ── */
+    .proj-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line);
+    }
+    @media (max-width: 820px) { .proj-grid { grid-template-columns: 1fr; } }
+    .proj { background: var(--panel); padding: 28px; transition: background .15s; }
+    .proj:hover { background: var(--panel-2); }
+    .proj-label {
+      font-family: var(--mono); font-size: 10px;
+      color: var(--dim); text-transform: uppercase;
+      letter-spacing: .08em; margin-bottom: 12px;
+    }
+    .proj-label span { color: var(--amber); }
+    .proj h3 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: 1.2rem; margin-bottom: 10px; line-height: 1.3;
+    }
+    .proj p { color: var(--muted); font-size: 0.91rem; line-height: 1.7; margin-bottom: 16px; }
+    .proj-data {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      padding-top: 16px; border-top: 1px solid var(--line);
+    }
+    .proj-datum {
+      font-family: var(--mono); font-size: 10.5px;
+    }
+    .proj-datum b { color: var(--spectral); display: block; font-size: 1rem; margin-bottom: 2px; }
+    .proj-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--mono); font-size: 11px;
+      color: var(--dim); border-bottom: 1px solid var(--line);
+      padding-bottom: 1px; transition: color .15s, border-color .15s;
+      margin-top: 12px;
+    }
+    .proj-link:hover { color: var(--spectral); border-color: var(--spectral); }
+
+    /* ── SKILLS ── */
+    .skill-cols {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 32px 56px;
+    }
+    @media (max-width: 680px) { .skill-cols { grid-template-columns: 1fr; } }
+    .skill-group h4 {
+      font-family: var(--mono); font-size: 10.5px;
+      color: var(--amber); text-transform: uppercase;
+      letter-spacing: .08em; margin-bottom: 12px;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .chip {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--muted); border: 1px solid var(--line);
+      padding: 5px 10px; border-radius: 1px;
+      transition: border-color .15s, color .15s;
+    }
+    .chip:hover { border-color: var(--line-2); color: var(--text); }
+
+    /* ── AWARDS ── */
+    .award-list { border-top: 1px solid var(--line); }
+    .award {
+      display: grid; grid-template-columns: 90px 1fr;
+      gap: 24px; padding: 18px 0;
+      border-bottom: 1px solid var(--line); align-items: start;
+    }
+    @media (max-width: 600px) { .award { grid-template-columns: 1fr; gap: 6px; } }
+    .award-date {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--amber); padding-top: 3px;
+    }
+    .award-title { font-size: 0.94rem; margin-bottom: 4px; }
+    .award-note { font-family: var(--mono); font-size: 11px; color: var(--dim); }
+
+    /* ── CONTACT ── */
+    #contact { border-bottom: 1px solid var(--line); }
+    .contact-layout {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; gap: 32px; flex-wrap: wrap;
+    }
+    .contact-hed {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(1.7rem, 3.8vw, 2.5rem);
+      line-height: 1.18; max-width: 560px;
+    }
+    .contact-hed em { font-style: italic; color: var(--spectral); }
+    .contact-links {
+      display: flex; flex-direction: column; gap: 10px;
+      font-family: var(--mono); font-size: 12.5px;
+    }
+    .contact-links a {
+      border-bottom: 1px solid var(--line); padding-bottom: 2px;
+      transition: color .15s, border-color .15s; color: var(--muted);
+    }
+    .contact-links a:hover { color: var(--spectral); border-color: var(--spectral); }
+
+    /* ── FOOTER ── */
+    footer { padding: 24px 0 36px; }
+    footer .wrap {
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 10.5px;
+      color: var(--dim); flex-wrap: wrap; gap: 8px;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(12px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap">
+    <div class="brand">V. Maheshwari</div>
+    <div class="navlinks">
+      <a href="#research">research</a>
+      <a href="#publications">publications</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#contact" class="hide-sm">contact</a>
+    </div>
+    <div class="nav-status">
+      <div class="nav-dot"></div>
+      USC AI Institute
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Research Intern — AI Institute, University of South Carolina</div>
+    <div class="hero-layout">
+      <div>
+        <h1>Studying language models as <em>dynamical systems</em> — and building the ones that speak in more than one.</h1>
+        <p class="hero-sub">Pre-final year CSE (AI&nbsp;&amp;&nbsp;ML) at Amrita Vishwa Vidyapeetham (8.82 CGPA). I work across three threads: spectral analysis of LLM attention using Koopman operators, multilingual NLP for Indian languages, and reliable medical AI — with four papers in press or under review.</p>
+
+        <div class="hero-meta">
+          <div class="meta-row">
+            <span class="meta-key">location</span>
+            <span class="meta-val">Coimbatore, India</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-key">advisor</span>
+            <span class="meta-val">Dr. Amit Sheth (USC) · Dr. Debanga Raj Neog (IIT-G)</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-key">target</span>
+            <span class="meta-val">MS/PhD in CS — AI/ML · Fall 2027</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#publications">Read the papers →</a>
+          <a class="btn btn-ghost" href="mailto:vedantmaheshwari23@gmail.com">Get in touch</a>
+          <a class="btn btn-ghost" href="https://github.com/vedant-maheshwari" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn btn-ghost" href="https://linkedin.com/in/vedantm23/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <!-- Spectral signal card -->
+      <div>
+        <div class="signal-card">
+          <div class="sig-head">
+            <span class="sig-label">Attention spectrum · decay modes</span>
+            <span class="sig-val" id="eigLabel">λ ≈ 0.91 + 0.14i</span>
+          </div>
+          <svg class="spectral" viewBox="0 0 320 190" xmlns="http://www.w3.org/2000/svg">
+            <!-- grid lines -->
+            <line class="grid-line" x1="10" y1="47" x2="310" y2="47"/>
+            <line class="grid-line" x1="10" y1="143" x2="310" y2="143"/>
+            <line class="grid-line" x1="83" y1="10" x2="83" y2="180"/>
+            <line class="grid-line" x1="160" y1="10" x2="160" y2="180"/>
+            <line class="grid-line" x1="237" y1="10" x2="237" y2="180"/>
+            <!-- axes -->
+            <line class="axis-line" x1="10" y1="95" x2="310" y2="95"/>
+            <line class="axis-line" x1="10" y1="10" x2="10" y2="180"/>
+            <!-- paths -->
+            <path class="decay-path" id="decayPath" d=""/>
+            <path class="decay-path-2" id="decayPath2" d=""/>
+            <g id="eigDots"></g>
+          </svg>
+          <div class="sig-footer">
+            <span class="sig-caption">SR‑KAE reconstruction</span>
+            <span class="sig-caption">GQA vs. MHA comparison</span>
+          </div>
+        </div>
+
+        <!-- stat strip -->
+        <div class="stats-strip">
+          <div class="stat-box">
+            <span class="stat-n">4</span>
+            <span class="stat-l">papers</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-n">3</span>
+            <span class="stat-l">internships</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-n">8.82</span>
+            <span class="stat-l">CGPA / 10</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-n">96%</span>
+            <span class="stat-l">best F1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-n">01</span>
+      <h2>Research pillars</h2>
+      <span class="sec-aside">3 active threads</span>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="pillar-tag">Spectral / dynamical systems</div>
+        <h3>Koopman operators on attention</h3>
+        <p>Treating LLM attention as a dynamical system: SR‑KAE for jailbreak detection, EPCOD/DynaRank for entropy-proxy-controlled rank selection, and a GQA-vs-MHA spectral comparison across Phi-2 and Phi-4-mini. Developing CAMEO — a quantitative score for evaluation-aware concealment.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-tag">Multilingual NLP</div>
+        <h3>Language technology for Indian languages</h3>
+        <p>AgriLex and a KCC crop-name dictionary pipeline spanning 22 Indian languages; unsupervised cross-lingual NMT with DAE and back-translation; bilingual lexicon induction reaching <strong>96.3% F1</strong> in Hindi (100% recall). Benchmarked across Gemma 2, Krutrim, Llama 3.1, Qwen 2.5, Param, Sarvam.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-tag">Medical &amp; evaluation AI</div>
+        <h3>Reliable systems under scrutiny</h3>
+        <p>MUSAN — a Bayesian-uncertainty sparse-attention network for chest X-ray pneumonia detection with calibrated confidence. MedStat — a 13-microservice telehealth platform with RAG diagnostic support, CNN-based AF detection, and Hinglish-to-SOAP note generation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-n">02</span>
+      <h2>Publications &amp; patents</h2>
+      <span class="sec-aside">4 accepted/published · 2 under review · 1 patent</span>
+    </div>
+    <div class="pub-list">
+
+      <div class="pub reveal">
+        <span class="pub-status st-pub">Published</span>
+        <div class="pub-body">
+          <div class="pub-title"><a href="https://doi.org/10.1007/s44163-026-01676-4" target="_blank" rel="noopener">A Multimodal Transformer-Based Generative Adversarial Network for Age-Aware Sketch-to-Photo Synthesis</a></div>
+          <div class="pub-venue">Discover Artificial Intelligence (Q1) · Springer · DOI 10.1007/s44163-026-01676-4</div>
+          <div class="pub-authors">V. Maheshwari et al.</div>
+        </div>
+        <span class="pub-year">2026</span>
+      </div>
+
+      <div class="pub reveal">
+        <span class="pub-status st-in">In publication</span>
+        <div class="pub-body">
+          <div class="pub-title">Novel Spectral Jailbreak Classifier System and a Stability Metric to Assess and Identify Complex Non-Linear Prompt Dynamics in LLM Jailbreak Attempts</div>
+          <div class="pub-venue">ICTIS · Springer LNNS Series · Thailand</div>
+          <div class="pub-authors">V. Maheshwari, S. Sundarakrishnan</div>
+        </div>
+        <span class="pub-year">2026</span>
+      </div>
+
+      <div class="pub reveal">
+        <span class="pub-status st-in">In publication</span>
+        <div class="pub-body">
+          <div class="pub-title">Comparing Deep Learning Models for Brain Tumor Classification</div>
+          <div class="pub-venue">ASCML · BITS Goa · Springer</div>
+          <div class="pub-authors">P. Gupta, V. Maheshwari et al.</div>
+        </div>
+        <span class="pub-year">2026</span>
+      </div>
+
+      <div class="pub reveal">
+        <span class="pub-status st-rev">Under review</span>
+        <div class="pub-body">
+          <div class="pub-title">MUSAN: Multi-Uncertainty Sparse Attention Network for chest X-ray pneumonia detection with Bayesian uncertainty quantification</div>
+          <div class="pub-venue">Targeting Scientific Reports / Biomedical Signal Processing &amp; Control</div>
+        </div>
+        <span class="pub-year">2026</span>
+      </div>
+
+      <div class="pub reveal">
+        <span class="pub-status st-rev">Under review</span>
+        <div class="pub-body">
+          <div class="pub-title">Unsupervised cross-lingual NMT for Indian languages via denoising autoencoding and back-translation</div>
+          <div class="pub-venue">Targeting SN Computer Science / Multimedia Tools and Applications</div>
+        </div>
+        <span class="pub-year">2026</span>
+      </div>
+
+      <div class="pub reveal">
+        <span class="pub-status st-rev">Submitted</span>
+        <div class="pub-body">
+          <div class="pub-title">EPCOD / DynaRank: entropy-proxy-controlled dynamic rank selection in LLM attention via a Koopman operator framing</div>
+          <div class="pub-venue">Prepared for NeurIPS · posted to arXiv</div>
+        </div>
+        <span class="pub-year">2026</span>
+      </div>
+
+      <div class="pub reveal">
+        <span class="pub-status st-pat">Patent</span>
+        <div class="pub-body">
+          <div class="pub-title">System to Route a Subject Through Confirmation-Counted Lesson Records, and Method Thereof</div>
+          <div class="pub-venue">Indian Patent Application No. 202641098487</div>
+        </div>
+        <span class="pub-year">2026</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-n">03</span>
+      <h2>Experience</h2>
+      <span class="sec-aside">research &amp; industry</span>
+    </div>
+    <div class="tl-list">
+
+      <div class="tl-item reveal">
+        <div>
+          <div class="tl-date">Jun 2026 — present</div>
+          <div class="tl-loc">Columbia, USA</div>
+        </div>
+        <div>
+          <div class="tl-role">Research Intern</div>
+          <div class="tl-org">AI Institute, University of South Carolina · advisor Dr. Amit Sheth</div>
+          <div class="tl-desc">Developing domain-specific small language models across the full lifecycle — data curation, pretraining, post-training, evaluation. Investigating evaluation-aware concealment in LLMs and building CAMEO, a quantifiable concealment diagnostic protocol and score.</div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div>
+          <div class="tl-date">Jun — Aug 2026</div>
+          <div class="tl-loc">Chandigarh, India</div>
+        </div>
+        <div>
+          <div class="tl-role">Research Intern</div>
+          <div class="tl-org">CSIR — Central Scientific Instruments Organisation (CSIO)</div>
+          <div class="tl-desc">Built an LLM-based automatic terminology extraction and bilingual lexicon induction pipeline for agricultural data in Indian languages, initially evaluated in Hindi. Benchmarked Gemma 2, Krutrim, Llama 3.1, Qwen 2.5, Param, and Sarvam.</div>
+          <div class="tl-metrics">
+            <div class="tl-metric"><b>96.30%</b>F1 score (Hindi)</div>
+            <div class="tl-metric"><b>100%</b>recall</div>
+            <div class="tl-metric"><b>92%</b>precision</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div>
+          <div class="tl-date">Apr — Jun 2026</div>
+          <div class="tl-loc">Guwahati, India</div>
+        </div>
+        <div>
+          <div class="tl-role">Research Intern</div>
+          <div class="tl-org">IIT Guwahati · advisor Dr. Debanga Raj Neog</div>
+          <div class="tl-desc">Researched age-aware sketch-to-photo synthesis with a multimodal Transformer-based GAN — ResNet encoder, 4-block Transformer bottleneck, AdaIN-guided synthesis decoder. Work published in Discover AI (Q1).</div>
+          <div class="tl-metrics">
+            <div class="tl-metric"><b>0.198</b>LPIPS</div>
+            <div class="tl-metric"><b>20.31 dB</b>PSNR</div>
+            <div class="tl-metric"><b>2.09 yrs</b>age MAE</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div>
+          <div class="tl-date">Feb — Mar 2026</div>
+          <div class="tl-loc">Delhi, India</div>
+        </div>
+        <div>
+          <div class="tl-role">Software Developer</div>
+          <div class="tl-org">Tropilite Foods Pvt. Ltd</div>
+          <div class="tl-desc">Built a full-stack procurement portal (FastAPI, PostgreSQL, Docker, PWA) automating raw-material procurement with confidentiality controls and granular access management.</div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div>
+          <div class="tl-date">Nov 2025 — Jan 2026</div>
+          <div class="tl-loc">Pune, India</div>
+        </div>
+        <div>
+          <div class="tl-role">AI Developer</div>
+          <div class="tl-org">SCHOL (NGO)</div>
+          <div class="tl-desc">Built and deployed an AI-enhanced telehealth platform on microservices architecture — RAG diagnostic support and multilingual NLP pipelines for automated clinical documentation. This became MedStat, which won Best in AI &amp; Healthcare at the 2nd Small AI Hackathon (USA).</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-n">04</span>
+      <h2>Selected projects</h2>
+      <span class="sec-aside">engineering &amp; research</span>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj reveal">
+        <div class="proj-label">Healthcare AI · <span>Best in AI &amp; Healthcare, USA 2026</span></div>
+        <h3>MedStat</h3>
+        <p>A 13-microservice AI healthcare platform covering intelligent triage, clinical decision support, multilingual consultation, and automated clinical documentation. RAG pipeline with Cohere embeddings, cosine-similarity retrieval, and doctor-feedback-driven reranking. CNN-based atrial fibrillation detection over ECG/PPG STFT spectrograms. Hinglish-to-structured SOAP note generation across Hindi, Hinglish, and English.</p>
+        <div class="proj-data">
+          <div class="proj-datum"><b>13</b>microservices</div>
+          <div class="proj-datum"><b>80+</b>REST &amp; WS endpoints</div>
+          <div class="proj-datum"><b>3</b>languages</div>
+        </div>
+        <a class="proj-link" href="https://github.com/vedant-maheshwari/health_connect" target="_blank" rel="noopener">github.com/vedant-maheshwari/health_connect ↗</a>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-label">Reinforcement Learning · <span>RL fine-tuning research</span></div>
+        <h3>RL Fine-Tuning for Faithful Financial Reasoning</h3>
+        <p>End-to-end GRPO fine-tuning of Qwen2.5-1.5B-Instruct on FinQA with DSL-based execution rewards. Rebuilt the reward environment from scratch — fixing DSL parsing, binary comparisons, and reward-saturation bugs — and systematically diagnosed RL failure modes including format drift and multi-hop retrieval collapse. No retriever used.</p>
+        <div class="proj-data">
+          <div class="proj-datum"><b>18% → 46.6%</b>execution accuracy</div>
+          <div class="proj-datum"><b>55%</b>Yes/No accuracy</div>
+        </div>
+        <a class="proj-link" href="https://github.com/vedant-maheshwari/Finance_reasoning_RL" target="_blank" rel="noopener">github.com/vedant-maheshwari/Finance_reasoning_RL ↗</a>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-label">Traffic forecasting · <span>Spatiotemporal deep learning</span></div>
+        <h3>Traffic Flow Prediction</h3>
+        <p>Deep learning-based spatiotemporal traffic flow forecasting combining time-series modelling with graph-based spatial dependencies for urban mobility intelligence.</p>
+        <div class="proj-data">
+          <div class="proj-datum"><b>Python</b>Jupyter / scikit-learn</div>
+        </div>
+        <a class="proj-link" href="https://github.com/vedant-maheshwari/traffic_flow_prediction" target="_blank" rel="noopener">github.com/vedant-maheshwari/traffic_flow_prediction ↗</a>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-label">Education tech · <span>Indian Patent No. 202641098487</span></div>
+        <h3>Adaptive Learning Routing System</h3>
+        <p>A system that routes learners through lesson sequences based on confirmation-counted records — adaptively adjusting curriculum delivery based on demonstrated mastery. Granted an Indian Patent for the method and apparatus.</p>
+        <div class="proj-data">
+          <div class="proj-datum"><b>Patent</b>pending</div>
+          <div class="proj-datum"><b>OLabs finalist</b>top 15 / 150</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-n">05</span>
+      <h2>Toolset</h2>
+    </div>
+    <div class="skill-cols reveal">
+      <div class="skill-group">
+        <h4>LLM &amp; NLP</h4>
+        <div class="chips">
+          <span class="chip">PyTorch</span>
+          <span class="chip">Hugging Face</span>
+          <span class="chip">RAG</span>
+          <span class="chip">Fine-tuning</span>
+          <span class="chip">RLHF / GRPO</span>
+          <span class="chip">Multilingual NLP</span>
+          <span class="chip">Transformers</span>
+          <span class="chip">Embeddings</span>
+          <span class="chip">Prompt Engineering</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Deep learning &amp; vision</h4>
+        <div class="chips">
+          <span class="chip">CNNs</span>
+          <span class="chip">GANs</span>
+          <span class="chip">ResNet</span>
+          <span class="chip">AdaIN</span>
+          <span class="chip">Computer Vision</span>
+          <span class="chip">scikit-learn</span>
+          <span class="chip">NumPy / Pandas</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Backend &amp; infrastructure</h4>
+        <div class="chips">
+          <span class="chip">FastAPI</span>
+          <span class="chip">Microservices</span>
+          <span class="chip">Docker</span>
+          <span class="chip">REST / WebSockets</span>
+          <span class="chip">API Gateway</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">MongoDB</span>
+          <span class="chip">Redis</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Languages &amp; tools</h4>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">Java</span>
+          <span class="chip">MATLAB</span>
+          <span class="chip">SQL</span>
+          <span class="chip">Git</span>
+          <span class="chip">Linux</span>
+          <span class="chip">Jupyter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-n">06</span>
+      <h2>Awards &amp; recognition</h2>
+    </div>
+    <div class="award-list">
+      <div class="award reveal">
+        <span class="award-date">Apr 2026</span>
+        <div>
+          <div class="award-title">Best in AI &amp; Healthcare — 2nd Small AI Hackathon, USA</div>
+          <div class="award-note">Selected among 100 contenders · presented at National Tech Fair &amp; CEO Conclave</div>
+        </div>
+      </div>
+      <div class="award reveal">
+        <span class="award-date">Aug 2026</span>
+        <div>
+          <div class="award-title">Speaker — Pramana SLM++ Bootcamp, IAIRO</div>
+          <div class="award-note">GPT-2 architecture session for 80+ participants · SLM with Neurosymbolic AI course</div>
+        </div>
+      </div>
+      <div class="award reveal">
+        <span class="award-date">Nov 2025</span>
+        <div>
+          <div class="award-title">Teaching Assistant — Deep Learning Course</div>
+          <div class="award-note">Advisor Dr. Mithun Kumar Kar · made interactive assignments and course materials</div>
+        </div>
+      </div>
+      <div class="award reveal">
+        <span class="award-date">Jan 2026</span>
+        <div>
+          <div class="award-title">OLabs Hackathon Finalist — Top 15 of 150 teams</div>
+          <div class="award-note">Built an interactive gamification application for experimental education</div>
+        </div>
+      </div>
+      <div class="award reveal">
+        <span class="award-date">Feb 2025</span>
+        <div>
+          <div class="award-title">OpenAI Buildathon — State Level</div>
+          <div class="award-note">Agentic planning and management application for small businesses</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-n">07</span>
+      <h2>Get in touch</h2>
+    </div>
+    <div class="contact-layout reveal">
+      <div class="contact-hed">Open to research collaborations, MS/PhD admissions conversations, and internships in NLP, LLM interpretability, and <em>multilingual AI</em>.</div>
+      <div class="contact-links">
+        <a href="mailto:vedantmaheshwari23@gmail.com">vedantmaheshwari23@gmail.com</a>
+        <a href="https://linkedin.com/in/vedantm23/" target="_blank" rel="noopener">linkedin.com/in/vedantm23</a>
+        <a href="https://github.com/vedant-maheshwari" target="_blank" rel="noopener">github.com/vedant-maheshwari</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Vedant Maheshwari · Coimbatore, India · 2026</span>
+    <span>Amrita Vishwa Vidyapeetham · CSE (AI &amp; ML) · 2027</span>
+  </div>
+</footer>
+
+<script>
+// ── Spectral signal viz ──────────────────────────────────────────────────────
+(function () {
+  const W = 320, H = 190, BASE = 95;
+
+  function path(amp, freq, decay, phase) {
+    let d = '';
+    for (let i = 0; i <= 160; i++) {
+      const x = 10 + (W - 20) * (i / 160);
+      const t = i / 160 * 12;
+      const y = BASE - amp * Math.exp(-decay * t) * Math.sin(freq * t + phase);
+      d += (i === 0 ? 'M' : 'L') + x.toFixed(1) + ' ' + y.toFixed(1) + ' ';
+    }
+    return d;
+  }
+
+  document.getElementById('decayPath').setAttribute('d', path(68, 2.3, 0.26, 0));
+  document.getElementById('decayPath2').setAttribute('d', path(48, 3.5, 0.38, 1.1));
+
+  const g = document.getElementById('eigDots');
+  [[58, 42, 1], [112, 138, 1], [183, 52, 2], [228, 122, 1], [272, 68, 2]].forEach(([x, y, t]) => {
+    const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', t === 1 ? 2.8 : 2.2);
+    c.setAttribute('class', t === 1 ? 'eig-dot' : 'eig-dot-amber');
+    g.appendChild(c);
+  });
+
+  const vals = ['λ ≈ 0.91 + 0.14i', 'λ ≈ 0.87 − 0.09i', 'λ ≈ 0.94 + 0.02i', 'λ ≈ 0.83 + 0.21i'];
+  let idx = 0;
+  const el = document.getElementById('eigLabel');
+  el.style.transition = 'opacity .28s';
+  setInterval(() => {
+    el.style.opacity = 0;
+    setTimeout(() => { idx = (idx + 1) % vals.length; el.textContent = vals[idx]; el.style.opacity = 1; }, 300);
+  }, 3400);
+})();
+
+// ── Nav active link ──────────────────────────────────────────────────────────
+const navAs = document.querySelectorAll('.navlinks a');
+const secs  = document.querySelectorAll('section[id], header.hero');
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    navAs.forEach(a => a.classList.remove('active'));
+    const id = e.target.id || 'research';
+    const a = document.querySelector(`.navlinks a[href="#${id}"]`);
+    if (a) a.classList.add('active');
+  });
+}, { threshold: 0.4 });
+secs.forEach(s => io.observe(s));
+
+// ── Scroll reveal ────────────────────────────────────────────────────────────
+const rev = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.transitionDelay = `${Math.min(i * 60, 240)}ms`;
+      e.target.classList.add('in');
+      rev.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.07, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('.reveal').forEach(el => rev.observe(el));
+</script>
+
+</body>
+</html>
